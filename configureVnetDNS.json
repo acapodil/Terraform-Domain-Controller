@@ -14,21 +14,39 @@
                 "description": "The address range of the VNET in CIDR format"
             }
         },
-        "DNSServerAddress": {
+        "dnsServerAddress": {
             "type": "string",
             "metadata": {
                 "description": "The DNS address(es) of the DNS Server(s) used by the VNET"
             }
         },
-        "subnets": {
-            "type": "Array",
+        "subnetName": {
+            "type": "string",
             "metadata": {
-                "description": "The subnet definition for the VNET"
+                "description": "The subnet name for the ad VNET"
             }
         }
     },
+    "variables": {
+        "subnets": [
+            {
+                "name": "[parameters('subnetName')]",
+                "properties": {
+                    "addressPrefix": "10.0.0.0/24",
+                    "networksecuritygroup": {
+                        "id": "[resourceId('Microsoft.Network/networkSecurityGroups', 'DomainNSG')]"
+                    },
+                    "serviceEndpoints": [
+                        {
+                            "service": "Microsoft.Storage"
+                        }
+                    ]
+                }
+            }
+        ]
 
-    "variables": {},
+
+    },
     "resources": [
         {
             "name": "[parameters('virtualNetworkName')]",
@@ -44,7 +62,7 @@
                 "dhcpOptions": {
                     "dnsServers": "[parameters('DNSServerAddress')]"
                 },
-                "subnets": "[parameters('subnets')]"
+                "subnets": "[variables('subnets')]"
             }
         }
 
