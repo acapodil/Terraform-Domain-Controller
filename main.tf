@@ -9,16 +9,17 @@ terraform {
     }
   }
 
-  # backend "azurerm" {
-  #   resource_group_name  = "TC-Terraform-State"
-  #   storage_account_name = "tfstatefiles1"
-  #   container_name       = "domaincontroller"
-  #   key                  = "dc.terraform.tfstate"
-  # }
+
 
 }
 
 provider "azurerm" {
+
+  subscription_id = var.subscriptionID
+  client_id       = var.clientID
+  client_secret   = var.clientSecret
+  tenant_id       = var.tenantID
+
   features {}
 }
 
