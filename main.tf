@@ -191,7 +191,7 @@ resource "azurerm_dev_test_global_vm_shutdown_schedule" "rg" {
   location           = azurerm_resource_group.domain_controller_RG.location
   enabled            = true
 
-  daily_recurrence_time = "1600"
+  daily_recurrence_time = "1700"
   timezone              = "Central Standard Time"
 
 
