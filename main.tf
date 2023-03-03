@@ -72,6 +72,7 @@ resource "azurerm_network_security_group" "DC_NSG" {
     destination_address_prefix = "*"
   }
 
+
   security_rule {
     name                       = "Port_80_Inbound"
     priority                   = 101
