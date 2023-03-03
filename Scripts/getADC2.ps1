@@ -18,6 +18,14 @@
 
     }
 
+     try{ 
+            choco install googlechrome -yes --ignore-checksums
+
+    }
+    catch{
+            choco install googlechrome -yes --ignore-checksums
+
+    }
 
 
     exit 0
